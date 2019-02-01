@@ -1,6 +1,19 @@
 <template>
   <div id="app" class="app-container">
+    <!-- 顶部Header区域 -->
 <mt-header fixed title="黑马程序员Vue项目"></mt-header>
+
+
+
+<!-- 中间的路由router-view区域 -->
+
+
+
+
+
+
+
+<!-- 底部Tabbar区域 -->
 <nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item mui-active" href="#tabbar">
 				<span class="mui-icon mui-icon-home"></span>

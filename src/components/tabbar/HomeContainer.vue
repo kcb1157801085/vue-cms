@@ -1,0 +1,116 @@
+<template>
+<div id="home">
+ <mt-swipe :auto="4000">
+     <!-- 在组件中，使用v-for循环的时候一定要绑定key -->
+  <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
+      <img :src="item.img" alt="">
+  </mt-swipe-item>
+
+</mt-swipe>
+
+<!-- 六宫格改造 -->
+  <ul class="mui-table-view mui-grid-view mui-grid-9">
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+        <img src="../../assets/images/menu1.jpg" alt="">
+            <div class="mui-media-body">新闻资讯</div></a></li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+           <img src="../../assets/images/menu2.jpg" alt="">
+            <div class="mui-media-body">图片分享</div></a></li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+   <img src="../../assets/images/menu3.jpg" alt="">
+            <div class="mui-media-body">商品购买</div></a></li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+         <img src="../../assets/images/menu4.jpg" alt="">
+            <div class="mui-media-body">留言反馈</div></a></li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+           <img src="../../assets/images/menu5.jpg" alt="">
+            <div class="mui-media-body">视频专区</div></a></li>
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+       <img src="../../assets/images/menu6.jpg" alt="">
+            <div class="mui-media-body">联系我们</div></a></li>
+		   
+		        </ul> 
+
+</div>
+</template>
+<script>
+
+
+
+
+
+
+export default {
+   data(){
+       return{
+      lunbotuList:[]  //保存轮播图的数组
+       }
+   } ,
+   created(){
+    this.getLunbotu(); 
+   },
+   methods:{
+       getLunbotu(){//获取轮播图数据的方法
+       this.$http.get('http://vue.studyit.io/api/getlunbo')
+       .then(result=> {
+          if(result.body.status===0){
+              //成功
+            this.lunbotuList = result.body.message;  
+          }else{
+             //失败的
+       Toast('加载轮播图失败！');
+          }
+       }) ;
+
+       }
+   }
+
+
+
+
+
+
+
+
+
+}
+</script>
+<style scoped>
+.mint-swipe{
+    height: 200px;
+}
+.mint-swipe-item:nth-child(1){
+   background-color:red;  
+}
+.mint-swipe-item:nth-child(2){
+   background-color: yellowgreen; 
+}
+.mint-swipe-item:nth-child(3){
+   background-color:blueviolet;  
+}
+.mint-swipe-item img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.mui-grid-view .mui-grid-9{
+    background-color: #fff;
+    border:0;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell img{
+    width:60px;
+    height:60px;
+}
+.mui-media-body{
+    font-size: 13px;
+}
+.mui-grid-view .mui-grid-9 .mui-table-view-cell{
+    border:0;
+}
+
+
+
+
+
+</style> 

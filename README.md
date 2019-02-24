@@ -81,17 +81,38 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 2、点击加载更多，让pageIndex++ 然后重新调用this.getComments() 方法重新获取最新一页的数据
 3、为了防止新数据覆盖老数据的情况，我们应该 让老数据cocat拼接上新数据
 
+发表评论
+1、把文本框做双向数据绑定
+2、为发表按钮绑定一个事件
+3、校验评论内容是否为空，如果为空，则toast 提示用户评论内容不能为空
+4、通过vue-resource 发送一个请求，把评论内容提交给服务器
+5、当发表评论成功后，重新刷新列表，以查看最新的评论
+   ++ 如果调用getComments 方法重新刷新评论列表的话，可能只能得到最后一页的评论，前几页的评论获取不到
+   换一种思路：当评论成功后，在客户端，手动拼接出一个最新的评论对象，然后调用数组的unshift方法，把最新的评论，追加到data中comments的开头；这样，就能完美实现刷新评论列表的需求    
 
 
 
 
+##改造图片分享按钮为路由的链接并显示对应的组件页面
+##绘制图片列表 组件页面结构并美化样式
 
+1、制作顶部的滑动条
+2、制作底部的图片列表
 
+制作顶部滑动条的坑
+1、需要借助于 MUI 中的 tab-top-webview-main.html  
+2、需要把slider 区域的mui-fullscreen 类去掉 
+3、滑动条无法正常触发滑动，通过检查官方文档，发现这是js组件，需要被初始化一下
+导入   mui.js 
 
+mui('.mui-scroll-wrapper').scroll({
+	deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+}); 
 
-
-
-
-
+4、我们在初始化滑动条的时候，导入mui.js 但是，服务台报错，webpack 打包的时候出现严格模式，导致mui.js里面的caller等语法不能用，解决方案
+1、：mui.js   中的非严格模式的代码改掉，不现实
+2、把webpack打包的时候的严格模式禁用掉
+  
+npm install babel-plugin-transform-remove-strict-mode -D
 
 

@@ -16,9 +16,12 @@
             <div class="mui-media-body">新闻资讯</div>
             </router-link>
     </li>
-    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/home/photolist">
            <img src="../../assets/images/menu2.jpg" alt="">
-            <div class="mui-media-body">图片分享</div></a></li>
+            <div class="mui-media-body">图片分享</div>
+        </router-link>
+            </li>
     <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
    <img src="../../assets/images/menu3.jpg" alt="">
             <div class="mui-media-body">商品购买</div></a></li>
@@ -56,7 +59,7 @@ export default {
        getLunbotu(){//获取轮播图数据的方法
        this.$http.get('api/getlunbo')
        .then(result=> {
-          if(result.body.status===0){
+          if(result.body.status===0){   
               //成功
             this.lunbotuList = result.body.message;  
           }else{

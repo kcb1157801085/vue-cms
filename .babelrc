@@ -8,5 +8,7 @@
     }],
     "stage-2"
   ],
-  "plugins": ["transform-vue-jsx", "transform-runtime","transform-remove-strict-mode"]
+  "plugins": ["transform-vue-jsx", "transform-runtime","transform-remove-strict-mode"],
+  "ignore":["./src/lib/mui/js/mui.js"]
+
 }

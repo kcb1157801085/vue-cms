@@ -90,6 +90,7 @@ export default {
     width: 49%;
     border: 1px solid #ccc;
     box-shadow: 0 0 8px #ccc;
+    border-radius: 5px;
     margin:4px 0;
     padding: 2px;
     display: flex;
